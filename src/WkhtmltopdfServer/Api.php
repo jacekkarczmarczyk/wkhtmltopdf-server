@@ -6,13 +6,13 @@ namespace WkhtmltopdfServer;
 
 use Exception;
 use Psr\Http\Message\ServerRequestInterface;
-use WkhtmltopdfServer\Renderer\Renderer;
+use SharedTools\HtmlToPdfRenderer\HtmlToPdfRendererInterface;
 
 class Api
 {
-    private Renderer $renderer;
+    private HtmlToPdfRendererInterface $renderer;
 
-    public function __construct(Renderer $renderer)
+    public function __construct(HtmlToPdfRendererInterface $renderer)
     {
         $this->renderer = $renderer;
     }

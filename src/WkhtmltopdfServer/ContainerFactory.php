@@ -7,8 +7,9 @@ namespace WkhtmltopdfServer;
 use League\Container\Container;
 use League\Container\ReflectionContainer;
 use Psr\Container\ContainerInterface;
-use WkhtmltopdfServer\RendererSettings\RendererSettingsProvider;
-use WkhtmltopdfServer\RendererSettings\RendererSettingsProviderInterface;
+use SharedTools\HtmlToPdfRenderer\HtmlToPdfRendererInterface;
+use SharedTools\HtmlToPdfRenderer\WkhtmltopdfRenderer\WkhtmltopdfRenderer;
+use SharedTools\HtmlToPdfRenderer\WkhtmltopdfRenderer\WkhtmltopdfRendererSettingsProviderInterface;
 
 class ContainerFactory
 {
@@ -17,7 +18,11 @@ class ContainerFactory
         $container = new Container();
         $container->delegate(new ReflectionContainer());
 
-        $container->add(RendererSettingsProviderInterface::class, fn () => new RendererSettingsProvider($settingsPath));
+        $container->add(WkhtmltopdfRendererSettingsProviderInterface::class, fn () => new RendererSettingsProvider($settingsPath));
+        /**
+         * @psalm-suppress MissingClosureReturnType
+         */
+        $container->add(HtmlToPdfRendererInterface::class, fn () => $container->get(WkhtmltopdfRenderer::class));
 
         return $container;
     }

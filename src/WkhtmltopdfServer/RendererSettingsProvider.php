@@ -1,11 +1,13 @@
 <?php
 
-namespace WkhtmltopdfServer\RendererSettings;
+namespace WkhtmltopdfServer;
 
 use InvalidArgumentException;
 use RuntimeException;
+use SharedTools\HtmlToPdfRenderer\WkhtmltopdfRenderer\WkhtmltopdfRendererSettings;
+use SharedTools\HtmlToPdfRenderer\WkhtmltopdfRenderer\WkhtmltopdfRendererSettingsProviderInterface;
 
-class RendererSettingsProvider implements RendererSettingsProviderInterface
+class RendererSettingsProvider implements WkhtmltopdfRendererSettingsProviderInterface
 {
     private string $settingsPath;
 
@@ -14,7 +16,7 @@ class RendererSettingsProvider implements RendererSettingsProviderInterface
         $this->settingsPath = $settingsPath;
     }
 
-    public function getRendererSettings(): RendererSettings
+    public function getRendererSettings(): WkhtmltopdfRendererSettings
     {
         if (!is_readable($this->settingsPath)) {
             throw new RuntimeException('Settings file not found');
@@ -41,6 +43,6 @@ class RendererSettingsProvider implements RendererSettingsProviderInterface
             throw new InvalidArgumentException();
         }
 
-        return new RendererSettings($wkhtmltopdfSettings['path'], $wkhtmltopdfSettings['cache']);
+        return new WkhtmltopdfRendererSettings($wkhtmltopdfSettings['path'], $wkhtmltopdfSettings['cache']);
     }
 }

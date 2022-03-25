@@ -27,6 +27,7 @@
     "php": "~7.4",
     "knplabs/knp-snappy": "^1.4",
     "guzzlehttp/psr7": "^2.2",
+    "jacekkarczmarczyk/shared-tools": "^8.0",
     "league/container": "^4.2",
     "ext-json": "*"
   },
@@ -38,5 +39,11 @@
   "config": {
     "allow-plugins": {
     }
-  }
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/jacekkarczmarczyk/shared-tools"
+    }
+  ]
 }
