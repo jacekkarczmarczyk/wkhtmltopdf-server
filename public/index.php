@@ -9,7 +9,7 @@ use WkhtmltopdfServer\ContainerFactory;
 require __DIR__ . '/../vendor/autoload.php';
 
 /** @var array<mixed> $settings */
-$settings = file_get_contents(__DIR__ . '/../src/settings/settings.php');
+$settings = require __DIR__ . '/../src/settings/settings.php';
 $container = ContainerFactory::createContainer($settings);
 
 $errorReporting = $settings['errorReporting'];
