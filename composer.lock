@@ -327,16 +327,16 @@
         },
         {
             "name": "jacekkarczmarczyk/shared-tools",
-            "version": "8.0.0",
+            "version": "8.1.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:jacekkarczmarczyk/shared-tools.git",
-                "reference": "16f3d326e2acf6135f1fd7b8c2ca68df9026d52c"
+                "reference": "226e8f92599d12d0b8c1340491867b34b8a4ba59"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jacekkarczmarczyk/shared-tools/zipball/16f3d326e2acf6135f1fd7b8c2ca68df9026d52c",
-                "reference": "16f3d326e2acf6135f1fd7b8c2ca68df9026d52c",
+                "url": "https://api.github.com/repos/jacekkarczmarczyk/shared-tools/zipball/226e8f92599d12d0b8c1340491867b34b8a4ba59",
+                "reference": "226e8f92599d12d0b8c1340491867b34b8a4ba59",
                 "shasum": ""
             },
             "require": {
@@ -408,10 +408,10 @@
             ],
             "description": "Tools",
             "support": {
-                "source": "https://github.com/jacekkarczmarczyk/shared-tools/tree/v8.0.0",
+                "source": "https://github.com/jacekkarczmarczyk/shared-tools/tree/v8.1.0",
                 "issues": "https://github.com/jacekkarczmarczyk/shared-tools/issues"
             },
-            "time": "2022-03-25T19:50:06+00:00"
+            "time": "2022-03-25T20:09:33+00:00"
         },
         {
             "name": "jschaedl/iban-validation",

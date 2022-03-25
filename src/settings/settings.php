@@ -1,6 +1,6 @@
 <?php
 
-use WkhtmltopdfServer\ArrayMerger;
+use SharedTools\ArrayMerger\ArrayMerger;
 
 $instanceName = trim(file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . '_instance.txt') ?: '');
 $instanceFile = __DIR__ . DIRECTORY_SEPARATOR . "instance.{$instanceName}.php";
