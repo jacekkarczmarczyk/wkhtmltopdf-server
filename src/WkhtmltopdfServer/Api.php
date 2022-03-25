@@ -11,10 +11,12 @@ use SharedTools\HtmlToPdfRenderer\HtmlToPdfRendererInterface;
 class Api
 {
     private HtmlToPdfRendererInterface $renderer;
+    private ApiKeyProvider $apiKeyProvider;
 
-    public function __construct(HtmlToPdfRendererInterface $renderer)
+    public function __construct(HtmlToPdfRendererInterface $renderer, ApiKeyProvider $apiKeyProvider)
     {
         $this->renderer = $renderer;
+        $this->apiKeyProvider = $apiKeyProvider;
     }
 
     /**
@@ -22,8 +24,12 @@ class Api
      */
     public function run(ServerRequestInterface $serverRequest): void
     {
-        /** @var array{filename: string, html:string, landscape: boolean} $parsedBody */
+        /** @var array{filename: string, html:string, landscape: boolean, apiKey: string} $parsedBody */
         $parsedBody = json_decode($serverRequest->getBody()->getContents(), true);
+
+        if ($parsedBody['apiKey'] !== $this->apiKeyProvider->getApiKey()) {
+            throw new Exception('Invalid API key');
+        }
 
         $contents = $this->renderer->render($parsedBody['html'], $parsedBody['landscape']);
 

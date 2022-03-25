@@ -22,12 +22,15 @@ class ContainerFactory
         $container = new Container();
         $container->delegate(new ReflectionContainer());
 
-        $container->add(WkhtmltopdfRendererSettingsProviderInterface::class, fn () => new RendererSettingsProvider($settingsArray));
+        $container->addShared(WkhtmltopdfRendererSettingsProviderInterface::class, fn () => new RendererSettingsProvider($settingsArray));
         /**
          * @psalm-suppress MissingClosureReturnType
          */
-        $container->add(HtmlToPdfRendererInterface::class, fn () => $container->get(WkhtmltopdfRenderer::class));
-        $container->add('settings', $settingsArray);
+        $container->addShared(HtmlToPdfRendererInterface::class, fn () => $container->get(WkhtmltopdfRenderer::class));
+        /**
+         * @psalm-suppress MixedArgument
+         */
+        $container->addShared(ApiKeyProvider::class, fn () => new ApiKeyProvider($settingsArray['apiKey']));
 
         return $container;
     }

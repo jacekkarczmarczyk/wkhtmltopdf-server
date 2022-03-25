@@ -19,4 +19,5 @@ return ArrayMerger::mergeRecursiveDistinct([
         'cache' => realpath(__DIR__ . '/../../cache'),
     ],
     'errorReporting' => false,
+    'apiKey' => '',
 ], $instanceSettings);
