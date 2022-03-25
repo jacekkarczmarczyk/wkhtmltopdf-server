@@ -1,6 +1,7 @@
 {
   "name": "jacekkarczmarczyk/wkhtmltopdf-server",
   "description": "Wkhtmltopdf server",
+  "version": "1.0.0",
   "type": "project",
   "license": "MIT",
   "scripts": {
@@ -9,7 +10,8 @@
     "lint": "php-cs-fixer fix --dry-run --diff --show-progress=dots",
     "lint:fix": "php-cs-fixer fix --show-progress=dots",
     "fix": "composer lint:fix",
-    "test": "composer lint && composer phpstan && composer psalm"
+    "test": "composer lint && composer phpstan && composer psalm",
+    "deploy": "git diff --name-status --exit-code HEAD && composer test && git push --tags && git push && git checkout master && git merge dev && git push && git checkout dev"
   },
   "autoload": {
     "psr-4": {
