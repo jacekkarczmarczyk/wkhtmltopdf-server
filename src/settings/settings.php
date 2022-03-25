@@ -18,4 +18,5 @@ return ArrayMerger::mergeRecursiveDistinct([
         'path' => '/usr/bin/wkhtmltopdf',
         'cache' => realpath(__DIR__ . '/../../cache'),
     ],
+    'errorReporting' => false,
 ], $instanceSettings);

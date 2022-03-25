@@ -13,16 +13,21 @@ use SharedTools\HtmlToPdfRenderer\WkhtmltopdfRenderer\WkhtmltopdfRendererSetting
 
 class ContainerFactory
 {
-    public static function createContainer(string $settingsPath): ContainerInterface
+    /**
+     * @param array<mixed> $settingsArray
+     * @return ContainerInterface
+     */
+    public static function createContainer(array $settingsArray): ContainerInterface
     {
         $container = new Container();
         $container->delegate(new ReflectionContainer());
 
-        $container->add(WkhtmltopdfRendererSettingsProviderInterface::class, fn () => new RendererSettingsProvider($settingsPath));
+        $container->add(WkhtmltopdfRendererSettingsProviderInterface::class, fn () => new RendererSettingsProvider($settingsArray));
         /**
          * @psalm-suppress MissingClosureReturnType
          */
         $container->add(HtmlToPdfRendererInterface::class, fn () => $container->get(WkhtmltopdfRenderer::class));
+        $container->add('settings', $settingsArray);
 
         return $container;
     }
